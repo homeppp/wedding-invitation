@@ -8,6 +8,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
   <style>
     body {
       background-color: #fdf6f0;
@@ -28,9 +29,12 @@
 </head>
 <body>
 
-<audio autoplay loop>
-  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Carefree/Kevin_MacLeod_-_Carefree.mp3" type="audio/mpeg">
-</audio>
+	<button id="toggle-music" class="btn btn-lg btn-outline-primary">
+	  <i id="music-icon" class="bi bi-play-circle"></i> 음악 재생
+	</button>
+	<audio id="bg-music" loop>
+	  <source src="static/assets/music/serenity-329278.mp3" type="audio/mpeg">
+	</audio>
 
 <div class="container py-4">
 
@@ -86,8 +90,9 @@
   <div class="mb-4">
     <h5 class="mb-2">우리의 순간들 📸</h5>
     <div class="row g-2 gallery">
-      <div class="col-6"><img src="https://placekitten.com/400/300" alt="photo1"></div>
-      <div class="col-6"><img src="https://placekitten.com/401/300" alt="photo2"></div>
+      <div class="col-6"><img src="static/assets/photo/dongjak1.jpg" alt="photo1"></div>
+      <div class="col-6"><img src="static/assets/photo/dongjak2.jpg" alt="photo2"></div>
+      <div class="col-6"><img src="static/assets/photo/dongjak3.jpg" alt="photo3"></div>
     </div>
   </div>
 
@@ -179,19 +184,24 @@
 
   kakao.maps.load(initMap);
 
-// 음악 버튼 클릭 시 음악 제어
-document.getElementById('play-music').addEventListener('click', function() {
-  var audio = document.getElementById('bg-music');
-  
-  // 음악이 재생 중이면 멈추고, 아니면 재생
-  if (audio.paused) {
-    audio.play();
-    this.textContent = "음악 정지";  // 버튼 텍스트 변경
-  } else {
-    audio.pause();
-    this.textContent = "음악 재생";  // 버튼 텍스트 변경
-  }
-});
+  // 음악 제어
+  document.getElementById('toggle-music').addEventListener('click', function() {
+    var audio = document.getElementById('bg-music');
+    var icon = document.getElementById('music-icon');
+    
+    // 음악이 재생 중이면 일시 정지하고, 아니면 재생
+    if (audio.paused) {
+      audio.play();
+      icon.classList.remove('bi-play-circle');
+      icon.classList.add('bi-pause-circle');
+      this.innerHTML = '<i class="bi bi-pause-circle"></i> 음악 일시정지';
+    } else {
+      audio.pause();
+      icon.classList.remove('bi-pause-circle');
+      icon.classList.add('bi-play-circle');
+      this.innerHTML = '<i class="bi bi-play-circle"></i> 음악 재생';
+    }
+  });
 </script>
 
 </body>
