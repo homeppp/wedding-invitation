@@ -23,6 +23,30 @@
       height: auto;
       border-radius: 0.5rem;
     }
+    #toggle-music {
+	  position: fixed;
+	  top: 20px;
+	  right: 20px;
+	  background-color: transparent;
+	  border: none;
+	  border-radius: 50%;
+	  padding: 10px;
+	  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	  transition: transform 0.3s ease;
+	}
+
+	#toggle-music:hover {
+	  transform: scale(1.1);
+	}
+	
+	#toggle-music .bi {
+	  font-size: 40px;
+	  color: #007bff;
+	}
+	
+	#toggle-music:hover .bi {
+	  color: #0056b3;
+	}
   </style>
   <!-- 카카오 지도 API -->
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a771daa565683bc6df9101d785f3d702&libraries=LIBRARY"></script>
@@ -30,7 +54,7 @@
 <body>
 
 	<button id="toggle-music" class="btn btn-lg btn-outline-primary">
-	  <i id="music-icon" class="bi bi-play-circle"></i> 음악 재생
+	  <i id="music-icon" class="bi bi-play-circle"></i>
 	</button>
 	<audio id="bg-music" loop preload="auto">
 	  <source src="assets/music/serenity.mp3" type="audio/mpeg">
@@ -185,32 +209,23 @@
 
   // 음악 제어
 document.addEventListener('DOMContentLoaded', function() {
-  console.log("문서 로드 완료"); // 이 부분 확인
   const toggleMusicButton = document.getElementById('toggle-music');
   const audio = document.getElementById('bg-music');
   const icon = document.getElementById('music-icon');
 
   if (toggleMusicButton && audio && icon) {
     toggleMusicButton.addEventListener('click', function() {
-      console.log("버튼 클릭됨");
-
       // 음악이 재생 중이면 일시 정지하고, 아니면 재생
       if (audio.paused) {
-        console.log("음악 재생 시작");
         audio.play();
         icon.classList.remove('bi-play-circle');
         icon.classList.add('bi-pause-circle');
-        toggleMusicButton.innerHTML = '<i class="bi bi-pause-circle"></i> 음악 일시정지';
       } else {
-        console.log("음악 정지");
         audio.pause();
         icon.classList.remove('bi-pause-circle');
         icon.classList.add('bi-play-circle');
-        toggleMusicButton.innerHTML = '<i class="bi bi-play-circle"></i> 음악 재생';
       }
     });
-  } else {
-    console.error("버튼, 오디오, 아이콘을 찾을 수 없습니다.");
   }
 });
 </script>
