@@ -185,25 +185,21 @@
 
   // 음악 제어
 document.addEventListener('DOMContentLoaded', function() {
-  console.log("문서 로드 완료"); // 이 부분 확인
   document.getElementById('toggle-music').addEventListener('click', function() {
-    console.log("버튼 클릭됨");
     var audio = document.getElementById('bg-music');
     var icon = document.getElementById('music-icon');
     
     // 음악이 재생 중이면 일시 정지하고, 아니면 재생
     if (audio.paused) {
-      console.log("음악 재생 시작");
       audio.play();
       icon.classList.remove('bi-play-circle');
       icon.classList.add('bi-pause-circle');
       this.innerHTML = '<i class="bi bi-pause-circle"></i> 음악 일시정지';
     } else {
-      console.log("음악 정지");
       audio.pause();
       icon.classList.remove('bi-pause-circle');
       icon.classList.add('bi-play-circle');
-      this.innerHTML = '<i class="bi bi-play-circle"></i> 음악 재생';
+      this.innerHTML = '<i class="bi bi-play-circle"></i> 음악 재생';  // 텍스트 수정 부분
     }
   });
 });
