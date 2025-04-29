@@ -199,13 +199,17 @@ document.addEventListener('DOMContentLoaded', function() {
         audio.play();
         icon.classList.remove('bi-play-circle');
         icon.classList.add('bi-pause-circle');
-        this.innerHTML = '<i class="bi bi-pause-circle"></i> 음악 일시정지';
+        this.innerHTML = '<i class="bi bi-pause-circle"></i>';
       } else {
         console.log("음악 정지");
         audio.pause();
+        console.log("음악 정지222");
         icon.classList.remove('bi-pause-circle');
+        console.log("음악 정지333");
         icon.classList.add('bi-play-circle');
-        this.innerHTML = '<i class="bi bi-play-circle"></i> 음악 재생';
+        console.log("음악 정지444");
+        this.innerHTML = '<i class="bi bi-play-circle"></i>';
+        console.log("음악 정지555");
       }
     });
   } else {
