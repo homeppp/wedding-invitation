@@ -18,11 +18,17 @@
       border-radius: 1rem;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    .gallery img {
-      width: 100%;
-      height: auto;
-      border-radius: 0.5rem;
-    }
+    .gallery-img {
+	  width: 100%;
+	  height: 200px;
+	  object-fit: cover;
+	  border-radius: 0.5rem;
+	  cursor: pointer;
+	  transition: transform 0.2s ease;
+	}
+	.gallery-img:hover {
+	  transform: scale(1.03);
+	}
   </style>
   <!-- 카카오 지도 API -->
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a771daa565683bc6df9101d785f3d702&libraries=LIBRARY"></script>
@@ -90,8 +96,16 @@
   <div class="mb-4">
     <h5 class="mb-2">우리의 순간들 📸</h5>
     <div class="row g-2 gallery">
-      <div class="col-6"><img src="/assets/photo/dongjak1.jpg" alt="photo1"></div>
-      <div class="col-6"><img src="/assets/photo/dongjak2.JPG" alt="photo2"></div>
+      <div class="col-4"><img src="assets/photo/dongjak1.jpg" alt="photo1"></div>
+      <div class="col-4"><img src="assets/photo/hanbok1.JPG" alt="photo2"></div>
+      <div class="col-4"><img src="assets/photo/mass.JPG" alt="photo3"></div>
+      <div class="col-4"><img src="assets/photo/4cut_1.jpg" alt="photo4"></div>
+      <div class="col-4"><img src="assets/photo/4cut_2.jpg" alt="photo5"></div>
+      <div class="col-4"><img src="assets/photo/4cut_3.jpg" alt="photo6"></div>
+      <div class="col-4"><img src="assets/photo/4cut_4.jpg" alt="photo7"></div>
+      <div class="col-4"><img src="assets/photo/4cut_5.jpg" alt="photo8"></div>
+      <div class="col-4"><img src="assets/photo/4cut_6.jpg" alt="photo9"></div>
+      <div class="col-4"><img src="assets/photo/4cut_7.jpg" alt="photo10"></div>
     </div>
   </div>
 

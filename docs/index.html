@@ -9,6 +9,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"> <!-- CSS 로드 -->
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
   <style>
     body {
       background-color: #fdf6f0;
@@ -18,20 +19,41 @@
       border-radius: 1rem;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    .gallery img {
-      width: 100%;
-      height: auto;
-      border-radius: 0.5rem;
-    }
-    #toggle-music {
+	.polaroid {
+	  background-color: #fff;
+	  padding: 10px 10px 25px;
+	  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+	  text-align: center;
+	  border-radius: 5px;
+	  margin-bottom: 1rem;
+	  transition: transform 0.2s ease;
+	}
+	
+	.polaroid:hover {
+	  transform: scale(1.03) rotate(-1deg);
+	}
+	
+	.gallery-img {
+	  width: 100%;
+	  height: 200px;
+	  object-fit: cover;
+	  border-radius: 3px;
+	}
+	
+	.caption {
+	  font-size: 0.9rem;
+	  margin-top: 10px;
+	  color: #555;
+	  font-family: 'Nanum Pen Script', cursive;
+	}
+	#toggle-music {
 	  position: fixed;
 	  top: 20px;
 	  right: 20px;
 	  background-color: transparent;
 	  border: none;
-	  border-radius: 50%;
-	  padding: 10px;
-	  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	  padding: 0;
+	  box-shadow: none;
 	  transition: transform 0.3s ease;
 	}
 
@@ -111,19 +133,88 @@
   </div>
 
   <!-- 사진 갤러리 -->
-  <div class="mb-4">
-    <h5 class="mb-2">우리의 순간들 📸</h5>
-    <div class="row g-2 gallery">
-      <div class="col-6"><img src="assets/photo/dongjak1.jpg" alt="photo1"></div>
-      <div class="col-6"><img src="assets/photo/dongjak2.JPG" alt="photo2"></div>
-    </div>
-  </div>
+	<div class="mb-4">
+	  <h5 class="mb-2">우리의 순간들 📸</h5>
+	  <div class="row g-2 gallery">
+	    <div class="col-4">
+	      <div class="polaroid">
+	        <img src="assets/photo/dongjak1.jpg" alt="photo1" class="gallery-img">
+	        <p class="caption">동작대</p>
+	      </div>
+	    </div>
+	    <div class="col-4">
+	      <div class="polaroid">
+	        <img src="assets/photo/hanbok1.JPG" alt="photo2" class="gallery-img">
+	        <p class="caption">한복사진</p>
+	      </div>
+	    </div>
+	    <div class="col-4">
+	      <div class="polaroid">
+	        <img src="assets/photo/mass.JPG" alt="photo3" class="gallery-img">
+	        <p class="caption">미사</p>
+	      </div>
+	    </div>
+	    <div class="col-4">
+	      <div class="polaroid">
+	        <img src="assets/photo/4cut_1.jpg" alt="photo4" class="gallery-img">
+	        <p class="caption">네컷1</p>
+	      </div>
+	    </div>
+	    <div class="col-4">
+	      <div class="polaroid">
+	        <img src="assets/photo/4cut_2.jpg" alt="photo5" class="gallery-img">
+	        <p class="caption">네컷2</p>
+	      </div>
+	    </div>
+	    <div class="col-4">
+	      <div class="polaroid">
+	        <img src="assets/photo/4cut_3.jpg" alt="photo6" class="gallery-img">
+	        <p class="caption">네컷3</p>
+	      </div>
+	    </div>
+	    <div class="col-4">
+	      <div class="polaroid">
+	        <img src="assets/photo/4cut_4.jpg" alt="photo7" class="gallery-img">
+	        <p class="caption">네컷4</p>
+	      </div>
+	    </div>
+	    <div class="col-4">
+	      <div class="polaroid">
+	        <img src="assets/photo/4cut_5.jpg" alt="photo8" class="gallery-img">
+	        <p class="caption">네컷5</p>
+	      </div>
+	    </div>
+	    <div class="col-4">
+	      <div class="polaroid">
+	        <img src="assets/photo/4cut_6.jpg" alt="photo9" class="gallery-img">
+	        <p class="caption">네컷6</p>
+	      </div>
+	    </div>
+	    <div class="col-4">
+	      <div class="polaroid">
+	        <img src="assets/photo/4cut_7.jpg" alt="photo10" class="gallery-img">
+	        <p class="caption">네컷7</p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 
   <!-- 카카오 지도 -->
 	<div class="mb-4">
 	  <h5 class="mb-2">오시는 길 📍</h5>
 	  <p class="text-muted mb-3">부산 해운대구 센텀1로 17</p> <!-- 주소 추가 -->
 	  <div id="map" style="width: 100%; height: 300px; border-radius: 1rem; overflow: hidden; border: 2px solid #eee;"></div>
+	</div>
+	
+	<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered modal-lg">
+	    <div class="modal-content bg-transparent border-0">
+	      <div class="modal-body p-0 text-center">
+	        <img id="modal-image" src="" class="img-fluid rounded" alt="확대 이미지">
+	      </div>
+	    </div>
+	  </div>
 	</div>
 
 </div>
@@ -208,26 +299,35 @@
   kakao.maps.load(initMap);
 
   // 음악 제어
-document.addEventListener('DOMContentLoaded', function() {
-  const toggleMusicButton = document.getElementById('toggle-music');
-  const audio = document.getElementById('bg-music');
-  const icon = document.getElementById('music-icon');
-
-  if (toggleMusicButton && audio && icon) {
-    toggleMusicButton.addEventListener('click', function() {
-      // 음악이 재생 중이면 일시 정지하고, 아니면 재생
-      if (audio.paused) {
-        audio.play();
-        icon.classList.remove('bi-play-circle');
-        icon.classList.add('bi-pause-circle');
-      } else {
-        audio.pause();
-        icon.classList.remove('bi-pause-circle');
-        icon.classList.add('bi-play-circle');
-      }
-    });
-  }
-});
+	document.addEventListener('DOMContentLoaded', function() {
+	  const toggleMusicButton = document.getElementById('toggle-music');
+	  const audio = document.getElementById('bg-music');
+	  const icon = document.getElementById('music-icon');
+	
+	  if (toggleMusicButton && audio && icon) {
+	    toggleMusicButton.addEventListener('click', function() {
+	      // 음악이 재생 중이면 일시 정지하고, 아니면 재생
+	      if (audio.paused) {
+	        audio.play();
+	        icon.classList.remove('bi-play-circle');
+	        icon.classList.add('bi-pause-circle');
+	      } else {
+	        audio.pause();
+	        icon.classList.remove('bi-pause-circle');
+	        icon.classList.add('bi-play-circle');
+	      }
+	    });
+	  }
+	});
+  
+	document.querySelectorAll('.gallery-img').forEach(img => {
+		img.addEventListener('click', () => {
+		  const modalImage = document.getElementById('modal-image');
+		  modalImage.src = img.src;
+		  const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+		  modal.show();
+		});
+	});
 </script>
 
 </body>
