@@ -125,7 +125,7 @@
 	  <i id="music-icon" class="bi bi-play-circle"></i>
 	</button>
 	<audio id="bg-music" loop preload="auto">
-	  <source src="assets/music/serenity.mp3" type="audio/mpeg">
+	  <source src="assets/music/10cm.mp3" type="audio/mpeg">
 	</audio>
 
 <div class="container py-4">
@@ -389,6 +389,20 @@
 		  modal.show();
 		});
 	});
+  
+	  // 이미지 모달 확대 기능 (모바일 포함 모든 환경에서 안정적으로 작동)
+	  document.addEventListener("DOMContentLoaded", function () {
+	    const modalImage = document.getElementById('modal-image');
+	    const imageModalElement = document.getElementById('imageModal');
+	    const bsModal = new bootstrap.Modal(imageModalElement);
+
+	    document.querySelectorAll('.gallery-img').forEach(img => {
+	      img.addEventListener('click', function () {
+	        modalImage.src = this.src;
+	        bsModal.show();
+	      });
+	    });
+	  });
 	
 	// 꽃가루
 	const canvas = document.getElementById('confetti');
