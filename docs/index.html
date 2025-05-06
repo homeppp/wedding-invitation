@@ -24,6 +24,10 @@
 	  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 	  background-color: #fff8f0; /* RSVP, 방명록 등 카드의 배경 */
 	}
+	.card img {
+	  max-height: 250px;
+	  object-fit: cover;
+	}
 	.container {
 	  position: relative;
 	  z-index: 10;
@@ -54,6 +58,38 @@
 	  object-fit: cover; /* 사진 잘 맞추기 */
 	}
 	
+	
+	/* 이미지 확대 오버레이 스타일 */
+	.image-modal {
+	  display: none;
+	  position: fixed;
+	  z-index: 9999;
+	  left: 0;
+	  top: 0;
+	  width: 100vw;
+	  height: 100vh;
+	  background-color: rgba(0, 0, 0, 0.8); /* 반투명 배경 */
+	  justify-content: center;
+	  align-items: center;
+	}
+	
+	.image-modal img {
+	  max-width: 90%;
+	  max-height: 90%;
+	  box-shadow: 0 0 20px #fff;
+	  border-radius: 10px;
+	}
+	
+	/* 닫기 버튼 */
+	.image-modal .close-btn {
+	  position: absolute;
+	  top: 20px;
+	  right: 30px;
+	  font-size: 32px;
+	  color: white;
+	  cursor: pointer;
+	  z-index: 10000;
+	}
 	#imageModal .modal-dialog {
 	  max-width: 100%;
 	  width: 100%;
@@ -141,26 +177,25 @@
   </div>
 
   <!-- 신랑신부 소개 -->
-  <div class="row g-3 mb-4" data-aos="fade-up">
-    <div class="col-6">
-		<div class="card h-100 p-3 text-center d-flex flex-column justify-content-center">
-			<div class="col-4"><img src="assets/photo/sungju1.jpg" alt="photo1"></div>
-		</div>    
-	    <div class="mt-2 text-center">
-			<h5 class="fw-bold">신랑 홍성주</h5>
-			<p class="text-muted">항상 웃음을 주는 사람</p>
-		</div>
+	<div class="col-6">
+	  <div class="card h-100 text-center p-2">
+	    <img src="assets/photo/sungju1.jpg" alt="신랑 사진" class="img-fluid rounded">
+	  </div>
+	  <div class="mt-2 text-center">
+	    <h5 class="fw-bold">신랑 홍성주</h5>
+	    <p class="text-muted">항상 웃음을 주는 사람</p>
+	  </div>
 	</div>
-    <div class="col-6">
-		<div class="card h-100 p-3 text-center d-flex flex-column justify-content-center">
-			<div class="col-4"><img src="assets/photo/mijeong1.jpg" alt="photo1"></div>
-		</div>    
-	    <div class="mt-2 text-center">
-			<h5 class="fw-bold">신부 고미정</h5>
-			<p class="text-muted">따뜻한 마음을 가진 사람</p>
-		</div>
+	
+	<div class="col-6">
+	  <div class="card h-100 text-center p-2">
+	    <img src="assets/photo/mijeong1.jpg" alt="신부 사진" class="img-fluid rounded">
+	  </div>
+	  <div class="mt-2 text-center">
+	    <h5 class="fw-bold">신부 고미정</h5>
+	    <p class="text-muted">따뜻한 마음을 가진 사람</p>
+	  </div>
 	</div>
-  </div>
   <br>
     <div class="card p-4 mb-4" data-aos="fade-up">
     	<h5 class="mb-3">축하 메시지 남기기 🎉</h5>
@@ -243,9 +278,13 @@
 	    </div>
 	  </div>
 	</div>
-<br>
+	<br>
+	<div class="image-modal" id="imageModal">
+	  <span class="close-btn" onclick="closeModal()">&times;</span>
+	  <img id="modalImage" src="" alt="확대 이미지">
+	</div>
 
-  <!-- 카카오 지도 -->
+    <!-- 카카오 지도 -->
 	<div class="mb-4" data-aos="fade-up">
 	  <h5 class="mb-2">오시는 길 📍</h5>
 	  <p class="text-muted mb-3">부산 해운대구 센텀1로 17</p> <!-- 주소 추가 -->
@@ -392,7 +431,7 @@
 	  }
 	});
   
-  
+  /*
 	  // 이미지 모달 확대 기능 (모바일 포함 모든 환경에서 안정적으로 작동)
 	  document.addEventListener("DOMContentLoaded", function () {
 	    const modalImage = document.getElementById('modal-image');
@@ -405,6 +444,28 @@
 	        bsModal.show();
 	      });
 	    });
+	  });
+	*/  
+	// 이미지 클릭 시 모달 열기
+	  document.querySelectorAll('.gallery img').forEach(img => {
+	    img.addEventListener('click', function () {
+	      const modal = document.getElementById('imageModal');
+	      const modalImg = document.getElementById('modalImage');
+	      modal.style.display = 'flex';
+	      modalImg.src = this.src;
+	    });
+	  });
+
+	  // 모달 닫기 함수
+	  function closeModal() {
+	    document.getElementById('imageModal').style.display = 'none';
+	  }
+
+	  // 오버레이 클릭 시 닫기
+	  document.getElementById('imageModal').addEventListener('click', function (e) {
+	    if (e.target === this) {
+	      closeModal();
+	    }
 	  });
 	
 	// 꽃가루
