@@ -521,6 +521,8 @@
 		const canvas = document.getElementById('confetti');
 		  const ctx = canvas.getContext('2d');
 		  let particles = [];
+		  
+		  /*
 		  const leafImage = new Image();
 		  leafImage.src = 'assets/photo/autumn.png'; // 낙엽 이미지 파일 (PNG로 준비 필요)
 		  
@@ -578,8 +580,8 @@
 			window.addEventListener('resize', resizeCanvas);
 			resizeCanvas();
 			animate();
-			
-	/*
+			*/
+	
 		  function resizeCanvas() {
 		    canvas.width = window.innerWidth;
 		    canvas.height = window.innerHeight;
@@ -634,7 +636,7 @@
 		  window.addEventListener('resize', resizeCanvas);
 		  resizeCanvas();
 		  animate();
-		*/  
+		 
 		  
 		  AOS.init({
 			    duration: 1000, // 1초
