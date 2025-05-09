@@ -10,10 +10,11 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"> <!-- CSS 로드 -->
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.css">
   <style>
 	body {
 	  background-color: #ffffff; /* 완전한 흰 배경 */
-	  font-family: 'Noto Sans KR', sans-serif;
+	  font-family: 'LeeSeoyun', sans-serif;
 	  margin: 0;
 	  padding: 0;
 	  overflow-x: hidden;
@@ -227,6 +228,14 @@
 		  </p>
 		</div>
 	    <br>
+		<!-- 🎊 D-Day 및 일정 -->
+		<div class="card p-4 mb-4 text-center" data-aos="fade-up">
+		  <h5 class="mb-3">우리의 결혼식까지 💒</h5>
+		  <p>📅 <strong>2025년 10월 25일 (토) 오후 3시 30분</strong></p>
+		  <p><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=홍성주+💍+미정+결혼식&dates=20251025T063000Z/20251025T083000Z&details=부산+센텀프리미어호텔+웨딩홀&location=부산+센텀1로+17" target="_blank" class="btn btn-outline-black btn-sm">구글 캘린더에 저장</a></p>
+		  <div id="countdown" style="font-size: 1.3rem; margin-top: 10px; color: #333;"></div>
+		</div>
+		<br>
 	  <!-- 방명록 -->
 	  <div class="card p-4 mb-4" data-aos="fade-up">
 	    <h5 class="mb-3">축하 메시지 남기기 🎉</h5>
@@ -316,31 +325,63 @@
 		  <p class="text-muted mb-3">부산 해운대구 센텀1로 17</p> <!-- 주소 추가 -->
 		  <div id="map" style="width: 100%; height: 300px; border-radius: 1rem; overflow: hidden; border: 2px solid #eee;"></div>
 		</div>
-		
-		<div class="text-center mt-3">
-		  <a href="https://map.naver.com/p/entry/place/11586173" target="_blank" class="mx-2">
-		    <img src="assets/photo/naverMap.png" alt="네이버 지도" width="60">
-		  </a>
-		  <a href="https://apis.openapi.sk.com/tmap/app/routes?appKey=발급받은_앱키&startX=129.128&startY=35.166&endX=129.1316083&endY=35.1669026&endName=센텀프리미어호텔" target="_blank" class="mx-2">
-		    <img src="assets/photo/TMap.jpeg" alt="티맵" width="60">
-		  </a>
-		  <a href="https://map.kakao.com/link/map/센텀프리미어호텔,35.1669026,129.1316083" target="_blank" class="mx-2">
-		    <img src=assets/photo/kakaoMap.png" alt="카카오맵" width="60">
-		  </a>
-		</div>
 		<br>
+		
 		<!-- RSVP -->
 		<div class="card p-4 mb-4" data-aos="fade-up">
 		  <h5 class="mb-3">참석 여부를 알려주세요 🙏</h5>
 		  <form id="rsvp-form">
 		    <input type="text" id="rsvp-name" class="form-control mb-2" placeholder="이름" required>
-		    <select id="rsvp-attend" class="form-select mb-2" required>
-		      <option value="">참석 여부</option>
-		      <option value="참석합니다">참석합니다</option>
-		      <option value="불참합니다">불참합니다</option>
-		    </select>
-		    <button type="submit" class="btn btn-outline-black w-100">제출</button>
+		    <div class="d-flex justify-content-center mb-2">
+		      <button type="button" class="btn btn-outline-success me-2" onclick="submitRSVP('참석합니다')">참석</button>
+		      <button type="button" class="btn btn-outline-danger" onclick="submitRSVP('불참합니다')">불참</button>
+		    </div>
 		  </form>
+		</div>
+		<!-- 📖 안내 말씀 탭 -->
+		<div class="card p-4 mb-4" data-aos="fade-up">
+		  <h5 class="mb-3">안내 말씀 🙏</h5>
+		  <ul class="nav nav-tabs mb-3" id="infoTabs" role="tablist">
+		    <li class="nav-item" role="presentation">
+		      <button class="nav-link active" id="info1-tab" data-bs-toggle="tab" data-bs-target="#info1" type="button">예식정보</button>
+		    </li>
+		    <li class="nav-item" role="presentation">
+		      <button class="nav-link" id="info2-tab" data-bs-toggle="tab" data-bs-target="#info2" type="button">주차안내</button>
+		    </li>
+		    <li class="nav-item" role="presentation">
+		      <button class="nav-link" id="info3-tab" data-bs-toggle="tab" data-bs-target="#info3" type="button">복장안내</button>
+		    </li>
+		    <li class="nav-item" role="presentation">
+		      <button class="nav-link" id="info4-tab" data-bs-toggle="tab" data-bs-target="#info4" type="button">연락처</button>
+		    </li>
+		  </ul>
+		  <div class="tab-content" id="infoTabsContent">
+		    <div class="tab-pane fade show active" id="info1" role="tabpanel">
+		      <p>본식은 3시 30분 정각에 시작됩니다. 여유 있게 도착해주세요 😊</p>
+		    </div>
+		    <div class="tab-pane fade" id="info2" role="tabpanel">
+		      <p>센텀프리미어호텔 지하 주차장 이용 가능, 예식장 방문 시 2시간 무료 주차권 제공</p>
+		    </div>
+		    <div class="tab-pane fade" id="info3" role="tabpanel">
+		      <p>편안한 복장으로 참석해주세요. 정장 또는 세미정장 권장드립니다.</p>
+		    </div>
+		    <div class="tab-pane fade" id="info4" role="tabpanel">
+		      <p>문의: 신랑 010-XXXX-XXXX / 신부 010-YYYY-YYYY</p>
+		    </div>
+		  </div>
+		</div>
+		
+		<!-- ❤️ 마음 전하실 곳 -->
+		<div class="card p-4 mb-4" data-aos="fade-up">
+		  <h5 class="mb-3">마음 전하실 곳 💌</h5>
+		  <select class="form-select" onchange="showAccount(this)">
+		    <option value="">선택해주세요</option>
+		    <option value="groom">신랑 측 계좌</option>
+		    <option value="bride">신부 측 계좌</option>
+		  </select>
+		  <div id="accountInfo" class="mt-3" style="display:none;">
+		    <p id="accountText"></p>
+		  </div>
 		</div>
 		<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -362,14 +403,16 @@
 	  const db = firebase.database();
 	
 	  // RSVP 제출
-	  $('#rsvp-form').submit(function(e) {
-	    e.preventDefault();
-	    const name = $('#rsvp-name').val();
-	    const attend = $('#rsvp-attend').val();
-	    db.ref('rsvp').push({ name, attend });
-	    alert("참석 여부가 저장되었습니다!");
-	    this.reset();
-	  });
+	  function submitRSVP(choice) {
+	    const name = document.getElementById('rsvp-name').value;
+	    if (!name.trim()) {
+	      alert("이름을 입력해주세요.");
+	      return;
+	    }
+	    db.ref('rsvp').push({ name, attend: choice });
+	    alert(`${choice} 로 저장되었습니다.`);
+	    document.getElementById('rsvp-form').reset();
+	  }
 	
 	  // 방명록 작성
 	  $('#guestbook-form').submit(function(e) {
@@ -642,6 +685,45 @@
 			    duration: 1000, // 1초
 			    easing: 'ease-in-out'
 			  });
+		  
+		  // 🕒 D-Day 타이머
+		  const targetDate = new Date("2025-10-25T15:30:00+09:00");
+
+		  function updateCountdown() {
+		    const now = new Date();
+		    const diff = targetDate - now;
+
+		    if (diff <= 0) {
+		      document.getElementById("countdown").innerText = "오늘은 결혼식 날입니다! 💍";
+		      return;
+		    }
+
+		    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+		    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+		    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+		    const seconds = Math.floor((diff / 1000) % 60);
+
+		    document.getElementById("countdown").innerText = 
+		      `D-${days} (${hours}시간 ${minutes}분 ${seconds}초 남음)`;
+		  }
+
+		  setInterval(updateCountdown, 1000);
+		  updateCountdown();
+
+		  // 💌 마음 전하실 곳
+		  function showAccount(select) {
+		    const accountText = document.getElementById("accountText");
+		    const accountInfo = document.getElementById("accountInfo");
+		    if (select.value === "groom") {
+		      accountText.innerText = "신한은행 110-123-456789 홍성주";
+		      accountInfo.style.display = "block";
+		    } else if (select.value === "bride") {
+		      accountText.innerText = "국민은행 123456-78-98765 고미정";
+		      accountInfo.style.display = "block";
+		    } else {
+		      accountInfo.style.display = "none";
+		    }
+		  }
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
