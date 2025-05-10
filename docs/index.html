@@ -24,7 +24,6 @@
 	  border-radius: 1rem;
 	  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 	  background-color: #ffffff; /* 완전 흰색 */
-	  padding: 1rem;
 	}
 	.card img {
 	  height: 100%;
@@ -34,14 +33,13 @@
 	.container {
 	  position: relative;
 	  z-index: 10;
-	  padding-left: 1rem;
-  	  padding-right: 1rem;
+	  padding-left: 0;
+  	  padding-right: 0;
 	}
 	.main-image-wrapper {
 	  margin: 0;
 	  margin-bottom: 30px;
 	  padding: 0;
-	  width: 100vw;
 	}
 	
 	.main-image-wrapper img {
@@ -242,7 +240,7 @@
 	<div class="container py-4">
 
 		<div class="main-image-wrapper text-center">
-		  <img src="assets/photo/wedImage.png" alt="결혼 메인 이미지" class="img-fluid">
+		  <img src="assets/photo/wedImage.png" alt="결혼 메인 이미지" class="img-fluid w-100" style="object-fit: cover; margin:0; padding:0;">
 		</div>
 		<!-- 인사말 -->
 		<div class="text-center mb-4">
