@@ -128,7 +128,11 @@
 	  border: none;
 	  border-radius: 0;
 	}
-
+	.modal-content {
+	  position: relative;
+	  display: flex;
+	  align-items: center;
+	}		
 	#modal-image {
 	  max-width: 90%;
 	  max-height: 90%;
@@ -231,67 +235,6 @@
     align-items: center;
     justify-content: center;
   }
-  
-  /* 모달 스타일 */
-  .modal {
-	    display: none; /* 기본적으로 숨김 */
-	    position: fixed; /* 화면 전체를 덮음 */
-	    z-index: 1; /* 다른 요소 위에 표시 */
-	    left: 0;
-	    top: 0;
-	    width: 100%;
-	    height: 100%;
-	    overflow: auto; /* 내용이 넘칠 경우 스크롤 */
-	    background-color: rgba(0,0,0,0.4); /* 반투명 배경 */
-	    justify-content: center;
-	    align-items: center;
-	}
-	
-	.modal-content {
-	    background-color: #fefefe;
-	    margin: auto;
-	    padding: 20px;
-	    border: 1px solid #888;
-	    border-radius: 10px;
-	    width: 80%; /* 모바일 환경 고려 */
-	    max-width: 400px;
-	    text-align: center;
-	    position: relative;
-	    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-	}
-	
-	.close-button {
-	    color: #aaa;
-	    float: right;
-	    font-size: 28px;
-	    font-weight: bold;
-	    cursor: pointer;
-	}
-	
-	.close-button:hover,
-	.close-button:focus {
-	    color: black;
-	    text-decoration: none;
-	    cursor: pointer;
-	}
-	
-	.modal-button {
-	    padding: 10px 15px;
-	    margin: 10px;
-	    font-size: 16px;
-	    cursor: pointer;
-	    border: none;
-	    border-radius: 5px;
-	    color: white;
-	}
-	
-	#attendBtn {
-	    background-color: #4CAF50;
-	}
-	
-	#notAttendBtn {
-	    background-color: #f44336;
-	}
 
   @media (max-width: 768px) {
     .nav-tabs {
@@ -485,18 +428,35 @@
 		<br>
 		
 		<!-- RSVP 버튼 -->
-		<button id="openModalBtn">참석 여부 알려주기</button>
+		<div class="card p-4 mb-4" data-aos="fade-up">
+		  <h5 class="mb-3">참석 여부를 알려주세요 🙏</h5>
+		  <button class="btn btn-outline-black w-100" data-bs-toggle="modal" data-bs-target="#rsvpModal">참석여부</button>
+		</div>
 		
-	    <div id="attendanceModal" class="modal">
-	        <div class="modal-content">
-	            <span class="close-button">&times;</span>
-	            <h2>참석 여부를 알려주세요</h2>
-	            <p>소중한 분의 참석 여부를 확인하고 싶습니다.</p>
-	            <button id="attendBtn" class="modal-button">참석합니다</button>
-	            <button id="notAttendBtn" class="modal-button">참석이 어렵습니다</button>
-	        </div>
-	    </div>
-	    
+		<!-- RSVP 모달 -->
+		<div class="modal fade" id="rsvpModal" tabindex="-1" aria-labelledby="rsvpModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <form id="rsvp-form">
+		        <div class="modal-header">
+		          <h5 class="modal-title" id="rsvpModalLabel">참석 여부 입력</h5>
+		          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+		        </div>
+		        <div class="modal-body">
+		          <input type="text" id="rsvp-name" class="form-control mb-2" placeholder="이름" required>
+		          <select id="rsvp-attend" class="form-select" required>
+		            <option value="">참석 여부 선택</option>
+		            <option value="참석합니다">참석합니다</option>
+		            <option value="불참합니다">불참합니다</option>
+		          </select>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="submit" class="btn btn-outline-black w-100">제출</button>
+		        </div>
+		      </form>
+		    </div>
+		  </div>
+		</div>
 		<!-- 📖 안내 말씀 탭 -->
 		<div class="card p-4 mb-4" data-aos="fade-up">
 		  <h5 class="mb-3">안내 말씀 🙏</h5>
@@ -643,96 +603,37 @@
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.database();
 	
-	// DOM 요소 가져오기
-	  const openModalBtn = document.getElementById('openModalBtn');
-	  const attendanceModal = document.getElementById('attendanceModal');
-	  const closeButton = document.querySelector('.close-button');
-	  const guestNameInput = document.getElementById('guestName');
-	  const guestContactInput = document.getElementById('guestContact');
-	  const submitAttendBtn = document.getElementById('submitAttendBtn');
-	  const submitNotAttendBtn = document.getElementById('submitNotAttendBtn');
-	  const modalBody = document.querySelector('.modal-body');
-	  const modalSuccess = document.querySelector('.modal-success');
-	  const successMessage = document.getElementById('successMessage');
-
-	  // 모달을 여는 함수
-	  function openModal() {
-	      attendanceModal.style.display = 'flex';
-	      modalBody.style.display = 'block'; // 모달 바디 보이게
-	      modalSuccess.style.display = 'none'; // 성공 메시지 숨김
-	      guestNameInput.value = ''; // 입력 필드 초기화
-	      guestContactInput.value = '';
-	  }
-
-	  // 모달을 닫는 함수
-	  function closeModal() {
-	      attendanceModal.style.display = 'none';
-	  }
-
-	  // 모달 열기 버튼 클릭 이벤트
-	  openModalBtn.onclick = openModal;
-
-	  // 닫기 버튼 클릭 이벤트
-	  closeButton.onclick = closeModal;
-
-	  // 모달 외부 클릭 시 모달 닫기
-	  window.onclick = function(event) {
-	      if (event.target === attendanceModal) { // '==='를 사용하여 타입까지 비교
-	          closeModal();
-	      }
-	  }
-
-	  /**
-	   * 참석 여부 정보를 Firebase에 저장하는 함수
-	   * @param {string} attendanceType - '참석' 또는 '불참'
-	   */
-	  async function saveAttendance(attendanceType) {
-	      const guestName = guestNameInput.value.trim();
-	      const guestContact = guestContactInput.value.trim();
-
-	      if (guestName === '') {
-	          alert('이름을 입력해주세요.');
-	          return;
-	      }
-
-	      // 데이터 객체 생성
-	      const attendanceData = {
-	          name: guestName,
-	          contact: guestContact,
-	          attendance: attendanceType,
-	          timestamp: new Date().toISOString() // 기록 시간
-	      };
-
-	      try {
-	          // 'attendances' 경로 아래에 새 고유 키로 데이터 푸시
-	          await db.ref('attendances').push(attendanceData);
-
-	          // 성공 메시지 표시
-	          modalBody.style.display = 'none';
-	          modalSuccess.style.display = 'block';
-	          if (attendanceType === '참석') {
-	              successMessage.textContent = `${guestName}님, 귀한 걸음 해주셔서 감사합니다!`;
-	          } else {
-	              successMessage.textContent = `${guestName}님, 아쉽지만 다음에 꼭 뵐 수 있기를 바랍니다.`;
-	          }
-	          // 선택적으로 2초 후 모달 자동 닫기
-	          // setTimeout(closeModal, 2000);
-
-	      } catch (error) {
-	          console.error("Firebase에 데이터 저장 중 오류 발생:", error);
-	          alert('데이터 저장 중 오류가 발생했습니다. 다시 시도해주세요.');
-	          // 오류 발생 시 다시 입력 폼을 보여줄 수도 있습니다.
-	          modalBody.style.display = 'block';
-	          modalSuccess.style.display = 'none';
-	      }
-	  }
-
-	  // '참석합니다' 버튼 클릭 이벤트
-	  submitAttendBtn.onclick = () => saveAttendance('참석');
-
-	  // '참석이 어렵습니다' 버튼 클릭 이벤트
-	  submitNotAttendBtn.onclick = () => saveAttendance('불참');
-	 
+	  // RSVP 폼 제출 이벤트
+		$(document).ready(function () {
+		  $('#rsvp-form').on('submit', function (e) {
+		    e.preventDefault();
+		
+		    const name = $('#rsvp-name').val().trim();
+		    const attend = $('#rsvp-attend').val();
+		
+		    if (!name || !attend) {
+		      alert('이름과 참석 여부를 모두 입력해주세요.');
+		      return;
+		    }
+		
+		    // Firebase에 저장
+		    const newRsvpRef = db.ref('rsvps').push();
+		    newRsvpRef.set({
+		      name: name,
+		      attend: attend,
+		      timestamp: Date.now()
+		    }).then(() => {
+		      alert(`${name}님, 참석 여부가 저장되었습니다. 감사합니다!`);
+		
+		      // 폼 초기화 및 모달 닫기
+		      $('#rsvp-form')[0].reset();
+		      $('#rsvpModal').modal('hide');
+		    }).catch((error) => {
+		      console.error('RSVP 저장 오류:', error);
+		      alert('저장 중 오류가 발생했습니다. 다시 시도해주세요.');
+		    });
+		  });
+		});
 	  
 	  // 복사버튼
 		$(document).ready(function () {
