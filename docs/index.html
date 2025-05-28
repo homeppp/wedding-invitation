@@ -107,6 +107,13 @@
 	  border-radius: 10px;
 	}
 	
+	.image-modal-content {
+	  position: relative;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	}
+	
 	/* 닫기 버튼 */
 	.image-modal .close-btn {
 	  position: absolute;
@@ -116,28 +123,6 @@
 	  color: white;
 	  cursor: pointer;
 	  z-index: 10000;
-	}
-	#imageModal .modal-dialog {
-	  max-width: 100%;
-	  width: 100%;
-	  margin: 0;
-	}
-	
-	#imageModal .modal-content {
-	  background-color: transparent;
-	  border: none;
-	  border-radius: 0;
-	}
-	.modal-content {
-	  position: relative;
-	  display: flex;
-	  align-items: center;
-	}		
-	#modal-image {
-	  max-width: 90%;
-	  max-height: 90%;
-	  border: 3px solid white;
-	  object-fit: contain;
 	}
 	
 	.prev, .next {
@@ -323,7 +308,7 @@
 		<div class="card p-4 mb-4 text-center" data-aos="fade-up">
 		  <h5 class="mb-3">우리의 결혼식까지 💒</h5>
 		  <p>📅 <strong>2025년 10월 25일 (토) 오후 3시 30분</strong></p>
-		  <img src="assets/photo/october1.jpg" alt="10월 달력" class="img-fluid rounded"style="max-height:auto; object-fit: cover;">
+		  <img src="assets/photo/october.jpg" alt="10월 달력" class="img-fluid rounded"style="max-height:auto; object-fit: cover;">
 		  <div id="countdown" style="font-size: 1.3rem; margin-top: 10px; color: #333;"></div>
 		</div>
 		<br>
@@ -407,7 +392,7 @@
 		<br>
 		<div class="image-modal" id="imageModal">
 		  <span class="close-btn" onclick="closeModal()">&times;</span>
-		  <div class="modal-content">
+		  <div class="image-modal-content">
 		    <span class="prev" onclick="changeImage(-1)">&#10094;</span>  <!-- 이전 화살표 -->
 		    <img id="modalImage" src="" alt="확대 이미지">
 		    <span class="next" onclick="changeImage(1)">&#10095;</span>  <!-- 다음 화살표 -->
