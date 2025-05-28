@@ -587,6 +587,10 @@
 	  };
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.database();
+	  
+		$('#rsvpModal').on('show.bs.modal', function () {
+		  document.getElementById('imageModal').style.display = 'none';
+		});
 	
 	  // RSVP 폼 제출 이벤트
 		$(document).ready(function () {
