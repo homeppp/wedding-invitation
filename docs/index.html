@@ -41,7 +41,7 @@
 	  position: relative;
 	  z-index: 10;
 	  padding-left: 1rem;
-  	  padding-right: 1rem;
+	    padding-right: 1rem;
 	}
 	.main-image-wrapper {
 	  margin: 0;
@@ -58,7 +58,7 @@
 	    margin: 0;
 	    padding: 0;
 	}
-
+	
 	.polaroid {
 	  height: 350px; /* 원하는 고정 높이 */
 	  display: flex;
@@ -86,7 +86,7 @@
 	}
 	
 	
-	/* 이미지 확대 오버레이 스타일 */
+	/* 이미지 확대 오버레이 스타일 (이 부분은 부트스트랩 모달과 별개로 잘 동작) */
 	.image-modal {
 	  display: none;
 	  position: fixed;
@@ -128,11 +128,14 @@
 	  border: none;
 	  border-radius: 0;
 	}
+	/* 기존 .modal-content 스타일과 겹쳐서 문제 발생 가능성 있어 주석 처리하거나 제거 */
+	/*
 	.modal-content {
 	  position: relative;
 	  display: flex;
 	  align-items: center;
-	}		
+	}
+	*/
 	#modal-image {
 	  max-width: 90%;
 	  max-height: 90%;
@@ -177,7 +180,7 @@
 	  transition: transform 0.3s ease;
 	  z-index: 1040; /* 추가: 카드보다 위에 오도록 */
 	}
-
+	
 	#toggle-music:hover {
 	  transform: scale(1.1);
 	}
@@ -209,51 +212,53 @@
 	  .caption {
 	    font-size: 0.8rem;
 	  }
+	  /* 부트스트랩 모달의 기본 margin-top, margin-bottom을 오버라이드 */
 	  .modal-dialog {
-	    margin: 1rem;
+	    margin: 1.75rem auto; /* 부트스트랩 기본값으로 유지 */
+	    max-width: 500px; /* 필요한 경우 최대 너비 조정 */
 	  }
 	}
-  .copy-btn {
-    border-radius: 6px;
-    transition: all 0.2s ease-in-out;
-  }
-
-  .copy-btn:hover {
-    background-color: #000;
-    color: #fff;
-  }
-
-  .account-number {
-    font-weight: 500;
-  }
-  
-  .small-tabs .nav-link {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.5rem;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  @media (max-width: 768px) {
-    .nav-tabs {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-
-    .nav-tabs::-webkit-scrollbar {
-      display: none;
-    }
-
-    .nav-tabs .nav-item {
-      flex: 1 0 auto;
-      text-align: center;
-    }
-  }
+	.copy-btn {
+	  border-radius: 6px;
+	  transition: all 0.2s ease-in-out;
+	}
+	
+	.copy-btn:hover {
+	  background-color: #000;
+	  color: #fff;
+	}
+	
+	.account-number {
+	  font-weight: 500;
+	}
+	
+	.small-tabs .nav-link {
+	  font-size: 0.85rem;
+	  padding: 0.4rem 0.5rem;
+	  white-space: nowrap;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	}
+	
+	@media (max-width: 768px) {
+	  .nav-tabs {
+	    display: flex;
+	    flex-wrap: nowrap;
+	    overflow-x: auto;
+	    -webkit-overflow-scrolling: touch;
+	    scrollbar-width: none;
+	  }
+	
+	  .nav-tabs::-webkit-scrollbar {
+	    display: none;
+	  }
+	
+	  .nav-tabs .nav-item {
+	    flex: 1 0 auto;
+	    text-align: center;
+	  }
+	}
   </style>
   <!-- 카카오 지도 API -->
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a771daa565683bc6df9101d785f3d702&libraries=LIBRARY"></script>
