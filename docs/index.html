@@ -98,6 +98,7 @@
 	  background-color: rgba(0, 0, 0, 0.8); /* 반투명 배경 */
 	  justify-content: center;
 	  align-items: center;
+	  z-index: 1040; /* 모달보다 아래로 */
 	}
 	
 	.image-modal img {
@@ -160,7 +161,7 @@
 	  padding: 0;
 	  box-shadow: none;
 	  transition: transform 0.3s ease;
-	  z-index: 1040; /* 추가: 카드보다 위에 오도록 */
+	  z-index: 1030; /* 추가: 카드보다 위에 오도록 */
 	}
 
 	#toggle-music:hover {
@@ -308,7 +309,7 @@
 		<div class="card p-4 mb-4 text-center" data-aos="fade-up">
 		  <h5 class="mb-3">우리의 결혼식까지 💒</h5>
 		  <p>📅 <strong>2025년 10월 25일 (토) 오후 3시 30분</strong></p>
-		  <img src="assets/photo/october.jpg" alt="10월 달력" class="img-fluid rounded"style="max-height:auto; object-fit: cover;">
+		  <img src="assets/photo/october.png" alt="10월 달력" class="img-fluid rounded"style="max-height:auto; object-fit: cover;">
 		  <div id="countdown" style="font-size: 1.3rem; margin-top: 10px; color: #333;"></div>
 		</div>
 		<br>
