@@ -609,35 +609,57 @@
 	  const db = firebase.database();
 	
 	  // RSVP 폼 제출 이벤트
-		$(document).ready(function () {
-		  $('#rsvp-form').on('submit', function (e) {
-		    e.preventDefault();
+		// DOM 요소 가져오기
+		const rsvpForm = document.getElementById('rsvp-form');
+		const rsvpNameInput = document.getElementById('rsvp-name');
+		const rsvpAttendSelect = document.getElementById('rsvp-attend');
 		
-		    const name = $('#rsvp-name').val().trim();
-		    const attend = $('#rsvp-attend').val();
+		// 부트스트랩 모달 인스턴스 생성
+		// 'rsvpModal' ID를 가진 모달 요소를 참조합니다.
+		const rsvpModalElement = document.getElementById('rsvpModal');
+		const myModal = new bootstrap.Modal(rsvpModalElement);
 		
-		    if (!name || !attend) {
-		      alert('이름과 참석 여부를 모두 입력해주세요.');
-		      return;
+		// RSVP 폼 제출 이벤트 리스너
+		rsvpForm.addEventListener('submit', async function(event) {
+		    event.preventDefault(); // 폼의 기본 제출 동작을 막음
+		
+		    const guestName = rsvpNameInput.value.trim();
+		    const attendanceType = rsvpAttendSelect.value;
+		
+		    if (guestName === '') {
+		        alert('이름을 입력해주세요.');
+		        rsvpNameInput.focus(); // 이름 입력 필드에 포커스
+		        return;
+		    }
+		    if (attendanceType === '') {
+		        alert('참석 여부를 선택해주세요.');
+		        rsvpAttendSelect.focus(); // 참석 여부 선택 필드에 포커스
+		        return;
 		    }
 		
-		    // Firebase에 저장
-		    const newRsvpRef = db.ref('rsvps').push();
-		    newRsvpRef.set({
-		      name: name,
-		      attend: attend,
-		      timestamp: Date.now()
-		    }).then(() => {
-		      alert(`${name}님, 참석 여부가 저장되었습니다. 감사합니다!`);
+		    // 데이터 객체 생성
+		    const attendanceData = {
+		        name: guestName,
+		        attendance: attendanceType,
+		        timestamp: new Date().toISOString() // 기록 시간
+		    };
 		
-		      // 폼 초기화 및 모달 닫기
-		      $('#rsvp-form')[0].reset();
-		      $('#rsvpModal').modal('hide');
-		    }).catch((error) => {
-		      console.error('RSVP 저장 오류:', error);
-		      alert('저장 중 오류가 발생했습니다. 다시 시도해주세요.');
-		    });
-		  });
+		    try {
+		        // 'attendances' 경로 아래에 새 고유 키로 데이터 푸시
+		        await db.ref('attendances').push(attendanceData);
+		
+		        alert(`${guestName}님, ${attendanceType} 응답 감사합니다!`);
+		        myModal.hide(); // 모달 닫기 (부트스트랩 모달 인스턴스 사용)
+		
+		        // 폼 초기화 (선택 사항)
+		        rsvpForm.reset();
+		        rsvpNameInput.value = '';
+		        rsvpAttendSelect.value = '';
+		
+		    } catch (error) {
+		        console.error("Firebase에 데이터 저장 중 오류 발생:", error);
+		        alert('데이터 저장 중 오류가 발생했습니다. 다시 시도해주세요.');
+		    }
 		});
 	  
 	  // 복사버튼
