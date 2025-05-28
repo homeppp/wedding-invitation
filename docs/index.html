@@ -93,8 +93,8 @@
 	  z-index: 9999;
 	  left: 0;
 	  top: 0;
-	  width: 100vw;
-	  height: 100vh;
+	  width: 100%;
+	  height: 100%;
 	  background-color: rgba(0, 0, 0, 0.8); /* 반투명 배경 */
 	  justify-content: center;
 	  align-items: center;
@@ -128,11 +128,35 @@
 	  border: none;
 	  border-radius: 0;
 	}
-	
+	.modal-content {
+	  position: relative;
+	  display: flex;
+	  align-items: center;
+	}		
 	#modal-image {
-	  width: 100vw;
-	  height: 100vh;
+	  max-width: 90%;
+	  max-height: 90%;
+	  border: 3px solid white;
 	  object-fit: contain;
+	}
+	
+	.prev, .next {
+	  position: absolute;
+	  top: 50%;
+	  font-size: 2rem;
+	  color: white;
+	  background-color: rgba(0, 0, 0, 0.5);
+	  padding: 10px;
+	  cursor: pointer;
+	  transform: translateY(-50%);
+	}
+	
+	.prev {
+	  left: 10px;
+	}
+	
+	.next {
+	  right: 10px;
 	}
 	
 	.caption {
@@ -299,7 +323,7 @@
 		<div class="card p-4 mb-4 text-center" data-aos="fade-up">
 		  <h5 class="mb-3">우리의 결혼식까지 💒</h5>
 		  <p>📅 <strong>2025년 10월 25일 (토) 오후 3시 30분</strong></p>
-		  <p><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=홍성주+💍+미정+결혼식&dates=20251025T063000Z/20251025T083000Z&details=부산+센텀프리미어호텔+웨딩홀&location=부산+센텀1로+17" target="_blank" class="btn btn-outline-black btn-sm">구글 캘린더에 저장</a></p>
+		  <img src="assets/photo/october.jpg" alt="10월 달력" class="img-fluid rounded"style="max-height:auto; object-fit: cover;">
 		  <div id="countdown" style="font-size: 1.3rem; margin-top: 10px; color: #333;"></div>
 		</div>
 		<br>
@@ -383,7 +407,11 @@
 		<br>
 		<div class="image-modal" id="imageModal">
 		  <span class="close-btn" onclick="closeModal()">&times;</span>
-		  <img id="modalImage" src="" alt="확대 이미지">
+		  <div class="modal-content">
+		    <span class="prev" onclick="changeImage(-1)">&#10094;</span>  <!-- 이전 화살표 -->
+		    <img id="modalImage" src="" alt="확대 이미지">
+		    <span class="next" onclick="changeImage(1)">&#10095;</span>  <!-- 다음 화살표 -->
+		  </div>
 		</div>
 	
 	    <!-- 카카오 지도 -->
@@ -706,37 +734,48 @@
 		  });
 		});
 	  
-		// 이미지 클릭 시 모달 열기	
-			document.querySelectorAll('.gallery .polaroid').forEach(item => {
-				item.addEventListener('click', function () {
-				  const modal = document.getElementById('imageModal');
-				  const modalImg = document.getElementById('modalImage');
-				  const img = this.querySelector('img');
-				  modal.style.display = 'flex';
-				  modalImg.src = img.src;
-				  document.getElementById('toggle-music').style.display = 'none'; // 숨기기
-				});
-			});
-			
-			function closeModal() {
-			  const modal = document.getElementById('imageModal');
-			  modal.style.display = 'none';
-			  document.getElementById('toggle-music').style.display = 'block'; // 다시 보이게
-			}
-	
-		  // 모달 닫기 함수
+	   // 이미지 슬라이드
+		let currentImageIndex = 0;
+		let imageArray = [];
+
+		document.querySelectorAll('.gallery .polaroid').forEach((item, index) => {
+		  item.addEventListener('click', function () {
+		    const modal = document.getElementById('imageModal');
+		    const modalImg = document.getElementById('modalImage');
+		    const img = this.querySelector('img');
+		    
+		    // 이미지 배열에 모든 이미지 경로를 저장
+		    imageArray = Array.from(document.querySelectorAll('.gallery .polaroid img')).map(img => img.src);
+		    currentImageIndex = index;  // 클릭한 이미지의 인덱스를 저장
+		    
+		    modal.style.display = 'flex';
+		    modalImg.src = img.src;
+		    
+		    document.getElementById('toggle-music').style.display = 'none'; // 숨기기
+		  });
+		});
+
 		function closeModal() {
 		  const modal = document.getElementById('imageModal');
 		  modal.style.display = 'none';
-		  document.getElementById('toggle-music').style.display = 'block'; // 반드시 다시 보이게
+		  document.getElementById('toggle-music').style.display = 'block'; // 다시 보이게
 		}
-	
-		  // 오버레이 클릭 시 닫기
-		  document.getElementById('imageModal').addEventListener('click', function (e) {
-		    if (e.target === this) {
-		      closeModal();
-		    }
-		  });
+
+		// 오버레이 클릭 시 모달 닫기
+		document.getElementById('imageModal').addEventListener('click', function (e) {
+		  if (e.target === this) {
+		    closeModal();
+		  }
+		});
+
+		// 이미지 슬라이드 이동
+		function changeImage(direction) {
+		  const modalImg = document.getElementById('modalImage');
+		  
+		  // 이전/다음 이미지로 인덱스를 이동
+		  currentImageIndex = (currentImageIndex + direction + imageArray.length) % imageArray.length;
+		  modalImg.src = imageArray[currentImageIndex];
+		}
 		
 		// 꽃가루
 		const canvas = document.getElementById('confetti');
