@@ -85,7 +85,9 @@
 	  object-fit: cover; /* 사진 잘 맞추기 */
 	}
 	
-	
+	.extra-photo {
+	  transition: all 0.4s ease;
+	}
 	/* 이미지 확대 오버레이 스타일 */
 	.image-modal {
 	  display: none;
@@ -152,6 +154,7 @@
 	#modalImage {
 	  user-select: none;
 	  -webkit-user-drag: none;
+	  transition: transform 0.3s ease, opacity 0.3s ease;
 	}
 	
 	.caption {
@@ -282,21 +285,21 @@
 		<div class="row mb-4">
 		  <div class="col-md-6 col-6 text-center">
 		    <div class="card h-100 text-center p-2">
-		      <img src="assets/photo/sungju1.JPG" alt="신랑 사진" class="img-fluid rounded"style="max-height: auto; object-fit: cover;">
+		      <img src="assets/photo/profile2.jpg" alt="신랑 사진" class="img-fluid rounded"style="max-height: auto; object-fit: cover;">
 		    </div>
 		    <div class="mt-2 text-center">
 		      <h5 class="fw-bold">신랑 홍성주</h5>
-		      <p class="text-muted">항상 웃음을 주는 사람</p>
+		      <p class="text-muted">홍승훈 · 주선미의 장남</p>
 		    </div>
 		  </div>
 		
 		  <div class="col-md-6 col-6 text-center">
 		    <div class="card h-100 text-center p-2">
-		      <img src="assets/photo/mijeong2.JPG" alt="신부 사진" class="img-fluid rounded"style="max-height:auto; object-fit: cover;">
+		      <img src="assets/photo/profile1.jpg" alt="신부 사진" class="img-fluid rounded"style="max-height:auto; object-fit: cover;">
 		    </div>
 		    <div class="mt-2 text-center">
 		      <h5 class="fw-bold">신부 고미정</h5>
-		      <p class="text-muted">따뜻한 마음을 가진 사람</p>
+		      <p class="text-muted">고봉수 · 현순재의 장녀</p>
 		    </div>
 		  </div>
 		</div>
@@ -335,110 +338,100 @@
 	<br>
 	  <!-- 사진 갤러리 -->
 		<div class="mb-4" data-aos="fade-up">
-		  <h5 class="mb-2">우리의 순간들 📸</h5>
-		  <div class="row g-2 gallery">
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding1.JPG" alt="photo1" class="gallery-img">
-		        <p class="caption">동작대교</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding2.jpg" alt="photo2" class="gallery-img">
-		        <p class="caption">경복궁</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding3.jpg" alt="photo3" class="gallery-img">
-		        <p class="caption">혼배미사</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding4.jpg" alt="photo4" class="gallery-img">
-		        <p class="caption">네컷1</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding5.jpg" alt="photo5" class="gallery-img">
-		        <p class="caption">네컷2</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding6.jpg" alt="photo6" class="gallery-img">
-		        <p class="caption">네컷3</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding7.jpg" alt="photo7" class="gallery-img">
-		        <p class="caption">네컷4</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding8.jpg" alt="photo8" class="gallery-img">
-		        <p class="caption">네컷5</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding9.jpg" alt="photo9" class="gallery-img">
-		        <p class="caption">네컷6</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding10.jpg" alt="photo10" class="gallery-img">
-		        <p class="caption">네컷7</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding11.jpg" alt="photo10" class="gallery-img">
-		        <p class="caption">네컷7</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding12.jpg" alt="photo10" class="gallery-img">
-		        <p class="caption">네컷7</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding13.jpg" alt="photo10" class="gallery-img">
-		        <p class="caption">네컷7</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding14.JPG" alt="photo10" class="gallery-img">
-		        <p class="caption">네컷7</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding15.jpg" alt="photo10" class="gallery-img">
-		        <p class="caption">네컷7</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding16.JPG" alt="photo10" class="gallery-img">
-		        <p class="caption">네컷7</p>
-		      </div>
-		    </div>
-		    <div class="col-6 col-md-4 col-lg-3">
-		      <div class="polaroid">
-		        <img src="assets/photo/wedding17.jpg" alt="photo10" class="gallery-img">
-		        <p class="caption">네컷7</p>
-		      </div>
-		    </div>
+			<div class="card-body">
+			  <h5 class="mb-2">우리의 순간들 📸</h5>
+			  <div class="row g-2 gallery">
+			    <div class="col-6 col-md-4 col-lg-3">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding1.JPG" alt="photo1" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding2.jpg" alt="photo2" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding3.jpg" alt="photo3" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding4.jpg" alt="photo4" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding5.jpg" alt="photo5" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding6.jpg" alt="photo6" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3 extra-photo d-none">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding7.jpg" alt="photo7" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3 extra-photo d-none">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding8.jpg" alt="photo8" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3 extra-photo d-none">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding9.jpg" alt="photo9" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3 extra-photo d-none">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding10.jpg" alt="photo10" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3 extra-photo d-none">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding11.jpg" alt="photo10" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3 extra-photo d-none">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding12.jpg" alt="photo10" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3 extra-photo d-none">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding13.jpg" alt="photo10" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3 extra-photo d-none">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding14.JPG" alt="photo10" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3 extra-photo d-none">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding15.jpg" alt="photo10" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3 extra-photo d-none">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding16.JPG" alt="photo10" class="gallery-img">
+			      </div>
+			    </div>
+			    <div class="col-6 col-md-4 col-lg-3 extra-photo d-none">
+			      <div class="polaroid">
+			        <img src="assets/photo/wedding17.jpg" alt="photo10" class="gallery-img">
+			      </div>
+			    </div>
+			  </div>
+		      <div class="text-center mt-3">
+			     <button id="toggleGalleryBtn" class="btn btn-outline-secondary btn-sm">
+			       사진 더보기
+			     </button>
+			   </div>
 		  </div>
 		</div>
 		<br>
@@ -450,11 +443,13 @@
 		    <span class="next" onclick="changeImage(1)">&#10095;</span>  <!-- 다음 화살표 -->
 		  </div>
 		</div>
+		
 	
 	    <!-- 카카오 지도 -->
 		<div class="mb-4" data-aos="fade-up">
 		  <h5 class="mb-2">오시는 길 📍</h5>
 		  <div class="d-flex justify-content-between align-items-center mb-3">
+		  	<p class="text-muted mb-0" id="address-text">센텀프리미어 호텔 웨딩홀 2층</p>
 		    <p class="text-muted mb-0" id="address-text">부산 해운대구 센텀1로 17</p>
 		    <button class="btn btn-sm btn-outline-secondary copy-btn" data-address="부산 해운대구 센텀1로 17">
 		      <i class="bi bi-clipboard"></i>
@@ -501,9 +496,9 @@
 		    </div>
 		    <div class="tab-pane fade" id="info3" role="tabpanel">
 		      <p>
-		        주차는 호텔 내 지하주차장(B1 ~B4)을 이용하시면 됩니다.<br>
-		        총 300대까지 수용이 가능하며<br><br>
-		        하객분들에게는 최대 2시간 무료주차가 가능합니다.
+		        주차는 호텔 내 지하주차장(B1 ~B4)을 이용하시면 됩니다.<br><br>
+		        총 300대까지 수용이 가능하며<br>
+		        최대 2시간 무료주차가 가능합니다.
 		      </p>
 		    </div>
 		  </div>
@@ -711,6 +706,24 @@
 		  });
 		});
 	  
+	  // 이미지 더보기 버튼
+		const toggleBtn = document.getElementById('toggleGalleryBtn');
+		let isExpanded = false;
+		
+		toggleBtn.addEventListener('click', function () {
+		  const hiddenPhotos = document.querySelectorAll('.extra-photo');
+		
+		  if (!isExpanded) {
+		    hiddenPhotos.forEach(el => el.classList.remove('d-none'));
+		    toggleBtn.textContent = '사진 접기';
+		    isExpanded = true;
+		  } else {
+		    hiddenPhotos.forEach(el => el.classList.add('d-none'));
+		    toggleBtn.textContent = '사진 더보기';
+		    isExpanded = false;
+		  }
+		});
+	  
 	   // 이미지 슬라이드
 		let currentImageIndex = 0;
 		let imageArray = [];
@@ -757,43 +770,78 @@
 		// 드래그/스와이프 이벤트 변수
 		let startX = 0;
 		let endX = 0;
-
-		// 마우스 이벤트
+		let isAnimating = false; // 애니메이션 중복 방지
+		
 		const modalImg = document.getElementById('modalImage');
-
+		
+		// 마우스 이벤트
 		modalImg.addEventListener('mousedown', function (e) {
 		  startX = e.clientX;
 		});
-
+		
 		modalImg.addEventListener('mouseup', function (e) {
 		  endX = e.clientX;
 		  handleSwipe();
 		});
-
-		// 터치 이벤트 (모바일 대응)
+		
+		// 터치 이벤트 (모바일)
 		modalImg.addEventListener('touchstart', function (e) {
 		  startX = e.touches[0].clientX;
 		});
-
+		
 		modalImg.addEventListener('touchend', function (e) {
 		  endX = e.changedTouches[0].clientX;
 		  handleSwipe();
 		});
-
-		// 스와이프 방향 판단 후 이미지 변경
+		
+		// 스와이프 처리
 		function handleSwipe() {
+		  if (isAnimating) return;
+		
 		  const diffX = endX - startX;
-		  const threshold = 50; // 최소 드래그 거리
-
+		  const threshold = 50;
+		
 		  if (diffX > threshold) {
-		    // 오른쪽으로 드래그 → 이전 이미지
-		    changeImage(-1);
+		    animateSlide(-1); // 오른쪽 → 이전
 		  } else if (diffX < -threshold) {
-		    // 왼쪽으로 드래그 → 다음 이미지
-		    changeImage(1);
+		    animateSlide(1);  // 왼쪽 → 다음
 		  }
 		}
 		
+		// 슬라이드 애니메이션 함수
+		function animateSlide(direction) {
+		  if (!imageArray.length) return;
+		  isAnimating = true;
+		
+		  const modalImg = document.getElementById('modalImage');
+		
+		  // 1단계: 슬라이드 아웃
+		  modalImg.style.transform = `translateX(${direction * -100}%)`;
+		  modalImg.style.opacity = '0';
+		
+		  setTimeout(() => {
+		    // 2단계: 이미지 변경
+		    currentImageIndex = (currentImageIndex + direction + imageArray.length) % imageArray.length;
+		    modalImg.src = imageArray[currentImageIndex];
+		
+		    // 3단계: 초기 위치 설정 (반대 방향에서 들어오게)
+		    modalImg.style.transition = 'none';
+		    modalImg.style.transform = `translateX(${direction * 100}%)`;
+		
+		    // 강제로 reflow 후 트랜지션 다시 활성화
+		    void modalImg.offsetWidth;
+		    modalImg.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+		
+		    // 4단계: 슬라이드 인
+		    modalImg.style.transform = 'translateX(0)';
+		    modalImg.style.opacity = '1';
+		
+		    setTimeout(() => {
+		      isAnimating = false;
+		    }, 300);
+		  }, 300);
+		}
+			
 		// 꽃가루
 		const canvas = document.getElementById('confetti');
 		  const ctx = canvas.getContext('2d');
