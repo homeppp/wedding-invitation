@@ -716,12 +716,14 @@
 	
 	  // 방명록 작성
 	  $('#guestbook-form').submit(function(e) {
-	    e.preventDefault();
-	    const name = $('#guest-name').val();
-	    const message = $('#guest-message').val();
-	    db.ref('guestbook').push({ name, message });
-	    this.reset();
-	  });
+		  e.preventDefault();
+		  const name = $('#guest-name').val();
+		  const message = $('#guest-message').val();
+		  const timestamp = Date.now();
+		
+		  db.ref('guestbook').push({ name, message, timestamp });  // ✅ timestamp 추가
+		  this.reset();
+		});
 	
 	  // 실시간 방명록 표시
 	  db.ref('guestbook').on('child_added', snapshot => {
