@@ -58,6 +58,13 @@
 	    margin: 0;
 	    padding: 0;
 	}
+	.profile-img {
+	  width: 100%;
+	  aspect-ratio: 1 / 1;
+	  object-fit: cover;
+	  height: auto !important; /* img-fluid가 height:auto 적용해도 덮어쓰기 */
+	  display: block;
+	}
 
 	.polaroid {
 	  height: auto; /* 고정 높이 제거 or 줄이기 */
@@ -298,7 +305,8 @@
 		<div class="row mb-4">
 		  <div class="col-md-6 col-6 text-center">
 		    <div class="card h-100 text-center p-2">
-		      <img src="assets/photo/profile3.jpg" alt="신랑 사진" class="img-fluid rounded" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover;">
+		      <img src="assets/photo/profile3.jpg" alt="신랑 사진" 
+		           class="rounded profile-img">
 		    </div>
 		    <div class="mt-2 text-center">
 		      <h5 class="fw-bold">신랑 홍성주</h5>
@@ -308,7 +316,8 @@
 		
 		  <div class="col-md-6 col-6 text-center">
 		    <div class="card h-100 text-center p-2">
-		      <img src="assets/photo/profile4.jpg" alt="신부 사진" class="img-fluid rounded" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover;">
+		      <img src="assets/photo/profile4.jpg" alt="신부 사진" 
+		           class="rounded profile-img">
 		    </div>
 		    <div class="mt-2 text-center">
 		      <h5 class="fw-bold">신부 고미정</h5>
