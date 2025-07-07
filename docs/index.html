@@ -58,15 +58,12 @@
 	    margin: 0;
 	    padding: 0;
 	}
-	.profile-photo-box {
-	    width: 100%;
-	    aspect-ratio: 1 / 1;
-	    background-size: contain; /* 이미지가 잘리지 않게 */
-	    background-repeat: no-repeat;
-	    background-position: center;
-	    background-color: #f8f9fa; /* 여백 배경색 (선택사항) */
-	    border-radius: 0.5rem;
-	  }
+	.profile-img {
+	  width: 100%;
+	  height: auto; /* 원본 비율 유지 */
+	  object-fit: contain; /* 잘리지 않게 */
+	  display: block;
+	}
 
 	.polaroid {
 	  height: auto; /* 고정 높이 제거 or 줄이기 */
@@ -305,24 +302,26 @@
 	
 	    <!-- 신랑신부 소개 -->
 		<div class="row mb-4">
+		  <!-- 신랑 -->
 		  <div class="col-md-6 col-6 text-center">
 		    <div class="card h-100 text-center p-2">
-			  <div class="profile-photo-box" style="background-image: url('assets/photo/profile3.jpg');"></div>
-			</div>
-			<div class="mt-2 text-center">
-			  <h5 class="fw-bold">신랑 홍성주</h5>
-			  <p class="text-muted">홍승훈 · 주선미의 장남</p>
-			</div>
+		      <img src="assets/photo/profile3.jpg" alt="신랑 사진" class="rounded profile-img">
+		    </div>
+		    <div class="mt-2 text-center">
+		      <h5 class="fw-bold">신랑 홍성주</h5>
+		      <p class="text-muted">홍승훈 · 주선미의 장남</p>
+		    </div>
 		  </div>
 		
+		  <!-- 신부 -->
 		  <div class="col-md-6 col-6 text-center">
 		    <div class="card h-100 text-center p-2">
-			  <div class="profile-photo-box" style="background-image: url('assets/photo/profile4.jpg');"></div>
-			</div>
-			<div class="mt-2 text-center">
-			  <h5 class="fw-bold">신부 고미정</h5>
-			  <p class="text-muted">고봉수 · 현순재의 장녀</p>
-			</div>
+		      <img src="assets/photo/profile4.jpg" alt="신부 사진" class="rounded profile-img">
+		    </div>
+		    <div class="mt-2 text-center">
+		      <h5 class="fw-bold">신부 고미정</h5>
+		      <p class="text-muted">고봉수 · 현순재의 장녀</p>
+		    </div>
 		  </div>
 		</div>
 	  <br>
