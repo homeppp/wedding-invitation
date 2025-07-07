@@ -61,9 +61,10 @@
 	.profile-img {
 	  width: 100%;
 	  aspect-ratio: 1 / 1;
-	  object-fit: cover;
-	  height: auto !important; /* img-fluid가 height:auto 적용해도 덮어쓰기 */
+	  object-fit: contain; /* cover 대신 contain 사용 */
+	  height: auto !important;
 	  display: block;
+	  background-color: #f8f9fa; /* 여백이 생길 경우 배경색 지정 (선택사항) */
 	}
 
 	.polaroid {
