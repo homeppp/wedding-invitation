@@ -264,6 +264,31 @@
     align-items: center;
     justify-content: center;
   }
+  
+  .kakao-btn {
+	  display: inline-flex;
+	  align-items: center;
+	  gap: 8px;
+	  padding: 10px 16px;
+	  background-color: #FEE500; /* 카카오톡 옐로우 */
+	  color: #3C1E1E;
+	  font-weight: bold;
+	  font-size: 16px;
+	  border: none;
+	  border-radius: 8px;
+	  cursor: pointer;
+	  transition: transform 0.1s, box-shadow 0.1s;
+	}
+	
+	.kakao-btn:hover {
+	  transform: translateY(-2px);
+	  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+	}
+	
+	.kakao-icon {
+	  width: 20px;
+	  height: 20px;
+	}
 
   @media (max-width: 768px) {
     .nav-tabs {
@@ -693,7 +718,11 @@
 	<br>
 	<!-- 카톡공유 -->
 	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-	<button id="kakao-share-btn">카카오톡으로 공유하기</button>
+	<!-- 2) 공유 버튼 -->
+	<button id="kakao-share-btn" class="kakao-btn">
+	  <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="카카오 아이콘" class="kakao-icon">
+	  카카오톡으로 공유하기
+	</button>
 	<br>
 	</div>
 	<div class="main-image-wrapper text-center" data-aos="fade-up">
@@ -1044,14 +1073,30 @@
 		  
 		// 1) JavaScript 키로 초기화
 		  Kakao.init('c96d2ba41a5d3a4d2b410f54f484bb96');
+		  console.log(Kakao.isInitialized()); // true 나오면 정상 초기화
 
-		  // 2) 버튼 클릭 시 템플릿 호출
+		  // 2) 버튼 클릭 시 링크 공유
 		  document.getElementById('kakao-share-btn').addEventListener('click', function() {
-		    Kakao.Share.sendCustom({
-		      templateId: 1300234,
-		      templateArgs: {
-		        // 템플릿에서 변수 썼을 경우 채워줄 값 (없으면 비워둬도 됨)
-		      }
+		    Kakao.Link.sendDefault({
+		      objectType: 'feed',
+		      content: {
+		        title: '우리 결혼합니다!',
+		        description: '청첩장 보러가기',
+		        imageUrl: 'https://homeppp.github.io/wedding-invitation/thumb.png', // 미리보기 이미지
+		        link: {
+		          mobileWebUrl: 'https://homeppp.github.io/wedding-invitation/',
+		          webUrl: 'https://homeppp.github.io/wedding-invitation/'
+		        }
+		      },
+		      buttons: [
+		        {
+		          title: '청첩장 보기',
+		          link: {
+		            mobileWebUrl: 'https://homeppp.github.io/wedding-invitation/',
+		            webUrl: 'https://homeppp.github.io/wedding-invitation/'
+		          }
+		        }
+		      ]
 		    });
 		  });
 	</script>
