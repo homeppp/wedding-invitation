@@ -722,7 +722,6 @@
 	    카카오톡으로 공유하기
 	  </button>
 	</div>
-	<br>
 	</div>
 	<div class="main-image-wrapper text-center" data-aos="fade-up">
 	  <img src="assets/photo/ending3.png" alt="결혼 엔딩 이미지" class="img-fluid">
@@ -1061,7 +1060,7 @@
 		    // 하루 단위만 계산 (남은 시간 때문에 하루가 반영되지 않으면 올림)
 		    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
 
-		    document.getElementById("countdown").innerText = `D-${days} 남음`;
+		    document.getElementById("countdown").innerText = `D-${days}`;
 		  }
 
 		  setInterval(updateCountdown, 1000);
