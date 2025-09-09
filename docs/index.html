@@ -608,7 +608,7 @@
 		  <!-- 본문 내용 -->
 		  <div style="display: inline-block; text-align: left;">
 		    <p style="font-size: 0.9rem;"><strong>일시</strong> : 2025년 10월 18일(토)</p>
-		    <p style="font-size: 0.9rem;"><strong>시간</strong> : 10:00 ~ 17:00</p>
+		    <p style="font-size: 0.9rem;"><strong>시간</strong> : 11:00 ~ 17:00</p>
 		    <p style="font-size: 0.9rem;"><strong>장소</strong> : 제주 하니크라운 호텔 1층 코스모스홀</p>
 		    <p style="font-size: 0.9rem;"><strong>주소</strong> : 제주 제주시 삼성로 10 제주하니크라운호텔</p>
 		  </div>
@@ -1045,26 +1045,32 @@
 			    easing: 'ease-in-out'
 			  });
 		  
-		  // 🕒 D-Day 타이머
-		  const targetDate = new Date("2025-10-25T15:30:00+09:00");
+		// 🕒 D-Day 타이머
+		  const targetDate = new Date("2025-10-25T00:00:00+09:00"); // 자정 기준으로 설정
 
 		  function updateCountdown() {
 		    const now = new Date();
-		    const diff = targetDate - now;
+
+		    // 현재 날짜의 "자정" 시간만 추출
+		    const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+		    // 목표일 자정 기준 차이 계산
+		    const diff = targetDate - todayMidnight;
 
 		    if (diff <= 0) {
 		      document.getElementById("countdown").innerText = "오늘은 결혼식 날입니다! 💍";
 		      return;
 		    }
 
-		    // 하루 단위만 계산 (남은 시간 때문에 하루가 반영되지 않으면 올림)
-		    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+		    // 하루 단위 차이 (00시 기준)
+		    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
 		    document.getElementById("countdown").innerText = `D-${days}`;
 		  }
 
-		  setInterval(updateCountdown, 1000);
-		  updateCountdown();	
+		  // 자정 기준으로 하루 단위만 표시하므로 1분마다 갱신해도 충분
+		  setInterval(updateCountdown, 60 * 1000);
+		  updateCountdown();
 		  
 		// 1) JavaScript 키로 초기화
 		  Kakao.init('c96d2ba41a5d3a4d2b410f54f484bb96');
